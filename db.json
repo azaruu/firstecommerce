@@ -1,0 +1,141 @@
+{
+  "shoes": [
+    {
+      "id": "1",
+      "name": "Nike Air Max 90",
+      "brand": "Nike",
+      "price": 129.99,
+      "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/399029/02/sv02/fnd/IND/fmt/png/Easy-Rider-Leather-Unisex-Sneakers"
+    },
+    {
+      "id": "2",
+      "name": "Adidas Ultraboost",
+      "brand": "Adidas",
+      "price": 149.99,
+      "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/108127/01/dt05/fnd/IND/fmt/png/Badminton-Smash-Sprint-Unisex-Indoor-Sports-Shoes"
+    },
+    {
+      "id": "3",
+      "name": "Puma RS-X",
+      "brand": "Puma",
+      "price": 99.99,
+      "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/395205/01/sv01/fnd/IND/fmt/png/Suede-XL-Unisex-Sneakers"
+    },
+    {
+      "id": "4",
+      "name": "Reebok Classic",
+      "brand": "Reebok",
+      "price": 89.99,
+      "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_350,h_350/global/311848/01/sv01/fnd/IND/fmt/png/Softride-Premier-Ombre-Res-Unisex-Running-Shoes"
+    },
+    {
+      "id": "5",
+      "name": "Nike Max 190",
+      "brand": "Nike",
+      "price": 149.99,
+      "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_350,h_350/global/191102/03/sv01/fnd/IND/fmt/png/NRGY-Dynamo-Futuro-Men's-Running-Shoes"
+    },
+    {
+      "id": "10",
+      "name": "Nike Max 190",
+      "brand": "Nike",
+      "price": 49.99,
+      "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_350,h_350/global/311123/02/sv01/fnd/IND/fmt/png/PUMA-Quest-X-Men's-Running-Shoes"
+    },
+    {
+      "id": "6",
+      "name": "PUMA Max 190",
+      "brand": "Nike",
+      "price": "69",
+      "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_350,h_350/global/310088/05/sv01/fnd/IND/fmt/png/MagMax-NITRO%E2%84%A2-Men's-Running-Shoes"
+    },
+    {
+      "id": "7",
+      "name": "Nike Max 190",
+      "brand": "Nike",
+      "price": 18.9,
+      "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_350,h_350/global/191102/03/sv01/fnd/IND/fmt/png/NRGY-Dynamo-Futuro-Men's-Running-Shoes"
+    },
+    {
+      "id": "8",
+      "name": "Nike Max 190",
+      "brand": "Nike",
+      "price": 88.5,
+      "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_350,h_350/global/311851/02/sv01/fnd/IND/fmt/png/Softride-Pro-Coast-Res-Unisex-Running-Shoes"
+    },
+    {
+      "id": "9",
+      "name": "Nike Max 190",
+      "brand": "Nike",
+      "price": 149.19,
+      "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_350,h_350/global/393151/03/sv01/fnd/IND/fmt/png/Blktop-Rider-Neo-Vintage-Unisex-Sneakers"
+    },
+    {
+      "id": "0279",
+      "name": "palasa",
+      "price": "120",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb96cKs2YKuQ6yL8tLRXVaMpSsI1MyjSYzGQ&s"
+    },
+    {
+      "id": "d8c1",
+      "name": "Nike Air Chappal",
+      "price": "122.99",
+      "image": "https://www.shutterstock.com/image-vector/flip-flops-isometric-icon-vector-600nw-1483311374.jpg"
+    },
+    {
+      "id": "5632",
+      "name": "Nike max Chappal",
+      "price": "122.90",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWjf8kgJP2syWA_3ZUPmLdSfPw45BJ47N6bA&s"
+    },
+    {
+      "id": "52d2",
+      "name": "Nike Gen-z  chappal",
+      "price": "122.99",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiBW9FKToztXX6mAovU8RCiXy5LJoA0O-snw&s"
+    },
+    {
+      "id": "dc78",
+      "name": "Slippers",
+      "price": "122.99",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxMxvKiLd7pCuXCIkZnhBimWi70BIiYsxa4A&s"
+    }
+  ],
+  "user": [
+    {
+      "id": "481f",
+      "name": "Azaru",
+      "email": "Azaru@gmail.com",
+      "password": "098098",
+      "cart": [],
+      "orders": [],
+      "blocked": false
+    },
+    {
+      "id": "0049",
+      "name": "Admin",
+      "email": "Admin@gmail.com",
+      "password": "098098",
+      "cart": [],
+      "orders": [],
+      "blocked": false
+    },
+    {
+      "id": "1783",
+      "name": "nilu",
+      "email": "nilu@gmail.com",
+      "password": "123123",
+      "cart": [],
+      "orders": [
+        {
+          "id": "0279",
+          "name": "palasa",
+          "price": "120",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb96cKs2YKuQ6yL8tLRXVaMpSsI1MyjSYzGQ&s",
+          "quantity": 1
+        }
+      ],
+      "blocked": false
+    }
+  ]
+}
