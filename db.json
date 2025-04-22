@@ -4,7 +4,7 @@
       "id": "1",
       "name": "Nike Air Max 90",
       "brand": "Nike",
-      "price": 129.99,
+      "price": "124.99",
       "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/399029/02/sv02/fnd/IND/fmt/png/Easy-Rider-Leather-Unisex-Sneakers"
     },
     {
@@ -83,12 +83,6 @@
       "image": "https://www.shutterstock.com/image-vector/flip-flops-isometric-icon-vector-600nw-1483311374.jpg"
     },
     {
-      "id": "5632",
-      "name": "Nike max Chappal",
-      "price": "122.90",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWjf8kgJP2syWA_3ZUPmLdSfPw45BJ47N6bA&s"
-    },
-    {
       "id": "52d2",
       "name": "Nike Gen-z  chappal",
       "price": "122.99",
@@ -116,8 +110,26 @@
       "name": "Admin",
       "email": "Admin@gmail.com",
       "password": "098098",
-      "cart": [],
-      "orders": [],
+      "cart": [
+        {
+          "id": "3",
+          "name": "Puma RS-X",
+          "brand": "Puma",
+          "price": 99.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/395205/01/sv01/fnd/IND/fmt/png/Suede-XL-Unisex-Sneakers",
+          "quantity": 1
+        }
+      ],
+      "orders": [
+        {
+          "id": "1",
+          "name": "Nike Air Max 90",
+          "brand": "Nike",
+          "price": "124.99",
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/399029/02/sv02/fnd/IND/fmt/png/Easy-Rider-Leather-Unisex-Sneakers",
+          "quantity": 1
+        }
+      ],
       "blocked": false
     },
     {
