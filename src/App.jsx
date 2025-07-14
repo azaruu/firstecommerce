@@ -15,6 +15,7 @@ import ProductManage from './AdminComponent/ProductManage';
 import Sidebar from './AdminComponent/SideBar';
 import ManageUsers from './AdminComponent/ManageUsers';
 import ManageOrders from './AdminComponent/ManageOrders';
+import OrderPlaced from './Pages/Orderplaced';
 
 
 function App() {
@@ -32,11 +33,12 @@ function App() {
             <Route path='/shop' element={<Shop/>}/>
             <Route path='/cart' element={<Cart/>}/> 
             <Route path='/Payment' element={<Payment/>}/>
-            <Route path='/order' element={<Order/>}/>
+            <Route path='/orders' element={<Order/>}/>
             <Route path='/adminpage' element={<AdminDasboard/>}/>
             <Route path='/productmanage' element={<ProductManage/>}/>
             <Route path='/manageusers' element={<ManageUsers/>}/>
-            <Route path='/manageorders' element={<ManageOrders/>}/>
+            {/* <Route path='/manageorders' element={<ManageOrders/>}/> */}
+            <Route path='/orderplaced' element={<OrderPlaced/>}/>
            </Routes>
           </CartProvider>
           <Toaster position="top-right" reverseOrder={false} />

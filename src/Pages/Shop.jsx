@@ -1,106 +1,180 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState, useCallback } from "react";
+import debounce from "lodash.debounce";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import Navbar from "../HOC/Hoc";
 import { useCart } from "../Context.jsx/cartContext";
+import { api } from "../../Api/ApiServices";
 
 function Shop() {
   const [products, setProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(""); // ✅ Search state
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [sortOption, setSortOption] = useState("default");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(8);
   const { addToCart } = useCart();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/shoes")
-      .then((response) => {
-        setProducts(response.data);
-      })
-      .catch((error) => console.error("Error fetching products:", error));
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await api.get("/Products");
+
+        const rawProducts = response.data.data?.$values || [];
+
+        const mappedProducts = rawProducts.map(p => ({
+          id: p.productID,
+          name: p.productName,
+          price: p.productPrice,
+          brand: p.brand,
+          image: p.imgUrl,
+        }));
+
+        setProducts(mappedProducts);
+        setFilteredProducts(mappedProducts);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+        setError("Failed to load products. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
   }, []);
 
-  // ✅ Function to filter products based on search term
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const debouncedSearch = useCallback(
+    debounce((term, list) => {
+      const filtered = list.filter(p => p.name.toLowerCase().includes(term.toLowerCase()));
+      setFilteredProducts(filtered);
+      setCurrentPage(1);
+    }, 300),
+    []
   );
 
+  useEffect(() => {
+    if (!searchTerm.trim()) {
+      setFilteredProducts(products);
+    } else {
+      debouncedSearch(searchTerm, products);
+    }
+  }, [searchTerm, products, debouncedSearch]);
+
+  useEffect(() => {
+    let sorted = [...filteredProducts];
+    switch (sortOption) {
+      case "price-low":
+        sorted.sort((a, b) => a.price - b.price);
+        break;
+      case "price-high":
+        sorted.sort((a, b) => b.price - a.price);
+        break;
+      case "name-asc":
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case "name-desc":
+        sorted.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      default:
+        break;
+    }
+    setFilteredProducts(sorted);
+  }, [sortOption]);
+
+  const indexOfLast = currentPage * productsPerPage;
+  const indexOfFirst = indexOfLast - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+  const handleAddToCart = (product) => {
+    addToCart(product.id);
+    alert(`${product.name} added to cart!`);
+  };
+
+  if (loading) return <div className="text-center text-white mt-20">Loading products...</div>;
+  if (error) return <div className="text-center text-red-500 mt-20">{error}</div>;
+
   return (
-    <div className="bg-black min-h-screen">
+    <div className="bg-black min-h-screen text-white">
       <Navbar />
       <div className="container mx-auto py-10 px-5">
-        <h4 className="text-3xl font-bold text-center text-gray-800 mb-8">Sho Now</h4>
+        <h1 className="text-3xl text-center mb-6">Shop Now</h1>
 
-        {/* ✅ Search Bar */}
-        {!selectedProduct && (
-          <div className="flex justify-center mb-6">
-            <input
-              type="text"
-              placeholder="Search for products..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="p-3 w-full max-w-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-red-400"
-            />
-          </div>
-        )}
+        <div className="flex flex-col md:flex-row justify-between mb-6 gap-4">
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="p-2 rounded bg-gray-800 w-full md:w-1/2"
+          />
 
-        {/* ✅ Show Product List (Hide if a Product is Selected) */}
-        {!selectedProduct && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
-                <div
-                  key={product.id}
-                  className="bg-gray-900 rounded-lg shadow-md overflow-hidden p-4 hover:shadow-lg transition cursor-pointer"
-                  onClick={() => setSelectedProduct(product)}
-                >
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-40 object-cover rounded-md mb-4 text-red-600 "
-                  />
-                  <h2 className="text-xl font-semibold text-red-600">{product.name}</h2>
-                  <p className="text-red-600">Brand: {product.brand}</p>
-                  <p className="text-lg font-bold text-amber-700 mt-2">${product.price}</p>
-                </div>
-              ))
-            ) : (
-              <p className="text-center text-gray-500 w-full col-span-full">No products found!</p>
-            )}
-          </div>
-        )}
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+            className="p-2 rounded bg-gray-800 w-full md:w-1/3"
+          >
+            <option value="default">Default Sorting</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="name-asc">Name A-Z</option>
+            <option value="name-desc">Name Z-A</option>
+          </select>
+        </div>
 
-        {/* ✅ Product Detail View (Only Show if a Product is Selected) */}
-        {selectedProduct && (
-          <div className="bg-white shadow-lg rounded-lg p-8 max-w-2xl mx-auto mt-10 relative">
-            <button
-              onClick={() => setSelectedProduct(null)} // ✅ Close Detail View
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-xl"
-            >
-              ❌
-            </button>
-            <div className="flex flex-col md:flex-row gap-6 items-center">
-              <img
-                src={selectedProduct.image}
-                alt={selectedProduct.name}
-                className="w-64 h-64 object-cover rounded-lg"
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {currentProducts.map((p) => (
+            <div key={p.id} className="bg-gray-900 rounded p-4 flex flex-col items-center">
+              <LazyLoadImage
+                src={p.image}
+                alt={p.name}
+                effect="blur"
+                className="w-full h-40 object-cover mb-4"
               />
-              <div className="text-left">
-                <h2 className="text-3xl font-bold text-gray-800">{selectedProduct.name}</h2>
-                <p className="text-gray-600 mt-2">{selectedProduct.description}</p>
-                <p className="text-lg font-bold text-amber-700 mt-2">${selectedProduct.price}</p>
-                <p className="text-gray-500 mt-1">Category: {selectedProduct.category}</p>
-                <p className="text-gray-500 mt-1">Brand: {selectedProduct.brand}</p>
-                <p className="text-gray-500 mt-1">Stock: {selectedProduct.stock}</p>
-
-                <button
-                  className="mt-4 bg-amber-700 text-white px-6 py-2 rounded-md w-full hover:bg-amber-800 transition"
-                  onClick={() => addToCart(selectedProduct)}
-                >
-                  Add to Cart
-                </button>
-              </div>
+              <h2 className="text-lg font-semibold">{p.name}</h2>
+              <p className="text-sm">Brand: {p.brand}</p>
+              <p className="text-amber-500 text-lg font-bold">${p.price}</p>
+              <button
+                onClick={() => handleAddToCart(p)}
+                className="mt-2 bg-amber-700 px-4 py-2 rounded hover:bg-amber-800"
+              >
+                Add to Cart
+              </button>
             </div>
-          </div>
-        )}
+          ))}
+        </div>
+
+        <div className="flex justify-center mt-6 gap-2">
+          <button
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-3 py-1 bg-gray-800 rounded"
+          >
+            Prev
+          </button>
+
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+            <button
+              key={page}
+              onClick={() => setCurrentPage(page)}
+              className={`px-3 py-1 rounded ${currentPage === page ? "bg-amber-700" : "bg-gray-800"}`}
+            >
+              {page}
+            </button>
+          ))}
+
+          <button
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="px-3 py-1 bg-gray-800 rounded"
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

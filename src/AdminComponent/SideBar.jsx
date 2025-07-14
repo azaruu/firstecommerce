@@ -21,10 +21,10 @@ const Sidebar = () => {
         <h2 className="text-3xl font-extrabold tracking-wide mb-6 text-center border-b pb-3">Admin Panel</h2>
         <ul className="space-y-3 flex flex-col flex-1">
           {[
-            { name: "Dashboard", path: "/adminpage" },
+           { name: "Dashboard", path: "/adminpage" },
             { name: "Manage Products", path: "/productmanage" },
             { name: "Manage Users", path: "/manageusers" },
-            { name: "Manage Orders", path: "/manageorders" },
+            // { name: "Manage Orders", path: "/manageorders" },
           ].map((item, index) => (
             <li 
               key={index} 

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./SideBar";
+import { api } from "../../Api/ApiServices";
 
 const AdminDashboard = () => {
   let navigate = useNavigate();
@@ -17,8 +18,8 @@ const AdminDashboard = () => {
     const fetchData = async () => {
       try {
         const [shoes, users] = await Promise.all([
-          axios.get("http://localhost:3000/shoes"),
-          axios.get("http://localhost:3000/user"),
+          api.get("/Products"),
+          api.get("/Authentication/GetAllUsers"),
         ]);
 
         let totalOrders = 0;
@@ -57,10 +58,10 @@ const AdminDashboard = () => {
         <h2 className="text-4xl font-extrabold text-center mb-8 text-gray-800">Admin Dashboard 🚀</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { label: "Total Products", value: state.TotalProduct, color: "bg-gradient-to-br from-blue-500 to-indigo-600" },
-            { label: "Total Users", value: state.TotalUsers, color: "bg-gradient-to-br from-green-500 to-teal-600" },
-            { label: "Total Orders", value: state.TotalOrders, color: "bg-gradient-to-br from-yellow-500 to-orange-600" },
-            { label: "Total Revenue", value: `$${state.TotalRevenue}`, color: "bg-gradient-to-br from-red-500 to-pink-600" },
+            { label: "Total Products", value: 5, color: "bg-gradient-to-br from-blue-500 to-indigo-600" },
+            { label: "Total Users", value: 5, color: "bg-gradient-to-br from-green-500 to-teal-600" },
+            // { label: "Total Orders", value: , color: "bg-gradient-to-br from-yellow-500 to-orange-600" },
+            { label: "Total Revenue", value: `$ 1754.87`, color: "bg-gradient-to-br from-red-500 to-pink-600" },
           ].map((item, index) => (
             <div
               key={index}

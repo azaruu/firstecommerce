@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../Context.jsx/cartContext";
 import axios from "axios";
+import { api } from "../../Api/ApiServices";
 
 
   const orderValidation = Yup.object({
@@ -17,19 +18,28 @@ import axios from "axios";
 
   function Payment() {
     const navigate=useNavigate()
-      
-     const {toPurchase }=useCart()
+         const {fetchCart}=useCart();
 
-     const [addOrder,SetAddOrder]=useState();
-const userId = localStorage.getItem("userId")
-    
-      useEffect(()=>{
-        axios.get(`http://localhost:3000/user/${userId}`)
-        .then((res)=>SetAddOrder(res.data.cart))
-    })
-    
+    let handleorder =async ()=>{
+          const id = localStorage.getItem("userId");
+     const response = await api.get(`/Orders/PlacedOrders/${id}`);
+     console.log(response.data);
+       await fetchCart();
+     navigate('/orderplaced');
+    }
 
-  return (
+
+
+
+
+//     const {toPurchase,RemoveFromCart }=useCart()
+//      const [addOrder,SetAddOrder]=useState();
+// const userId = localStorage.getItem("userId")
+//       useEffect(()=>{
+//         api.get(`${userId}`)
+//         .then((res)=>SetAddOrder(res.data.cart))
+//     })
+ return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
       <div className="w-full max-w-lg p-6 bg-white shadow-lg rounded-xl">
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">Payment Details</h2>
@@ -88,10 +98,9 @@ const userId = localStorage.getItem("userId")
               <button
                 type="submit"
                 className="w-full bg-gradient-to-r from-blue-400 to-blue-600 text-black py-2 rounded-lg hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300"
-                onClick={()=>{
-                  toPurchase(addOrder)
-                  navigate('/order')
-                }} >
+                onClick={
+                  handleorder
+                } >
                 Submit Order
               </button>
             </Form>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './SideBar';
+import { api } from '../../Api/ApiServices';
 
 const ManageOrders = () => {
   const [users, setUsers] = useState([]);
@@ -11,25 +12,27 @@ const ManageOrders = () => {
     fetchOrders();
   }, []);
 
-  const fetchOrders = async () => {
+  const fetchOrders = async (id) => {
     try {
-      const response = await axios.get('http://localhost:3000/user');
+      const response = await api.get(`Orders/${id}`);
       setUsers(response.data);
+      console.log();
+      
     } catch (error) {
       console.error('Error fetching orders', error);
     }
   };
 
-  const handleDeleteOrder = async (userId, orderIndex) => {
-    try {
-      const responses = await axios.get(`http://localhost:3000/user/${userId}`);
-      const updatedOrders = responses.data.orders.filter((_, index) => index !== orderIndex);
-      await axios.patch(`http://localhost:3000/user/${userId}`, { orders: updatedOrders });
-      fetchOrders();
-    } catch (error) {
-      console.error('Error deleting order', error);
-    }
-  };
+  // const handleDeleteOrder = async (userId, orderIndex) => {
+  //   try {
+  //     const responses = await axios.get(`http://localhost:3000/user/${userId}`);
+  //     const updatedOrders = responses.data.orders.filter((_, index) => index !== orderIndex);
+  //     await axios.patch(`http://localhost:3000/user/${userId}`, { orders: updatedOrders });
+  //     fetchOrders();
+  //   } catch (error) {
+  //     console.error('Error deleting order', error);
+  //   }
+  // };
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-50">
@@ -59,12 +62,12 @@ const ManageOrders = () => {
                           <span className="block text-gray-900 font-medium">{order.name}</span>
                           <span className="text-gray-700">${order.price}</span>
                         </div>
-                        <button 
+                        {/* <button 
                           onClick={() => handleDeleteOrder(user.id, orderIndex)}
                           className="ml-auto px-2 md:px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs md:text-sm font-semibold rounded-lg"
                         >
                           Delete
-                        </button>
+                        </button> */}
                       </li>
                     ))}
                   </ul>

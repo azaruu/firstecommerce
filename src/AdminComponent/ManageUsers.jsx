@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./SideBar";
+import { api } from "../../Api/ApiServices";
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,25 +15,29 @@ const ManageUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/user");
-      setUsers(response.data);
+      const response = await api.get("/Authentication/GetAllUsers");
+      setUsers(response.data.data.$values);
+      console.log(response.data);
     } catch (error) {
       console.error("Error fetching users", error);
     }
   };
 
+  
   const handleDeleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/user/${id}`);
+      await api.delete(`/Authentication/${id}`);
       fetchUsers();
     } catch (error) {
       console.error("Error deleting user", error);
     }
   };
 
-  const toggleBlockUser = async (id, isBlocked) => {
-    try {
-      await axios.patch(`http://localhost:3000/user/${id}`, { blocked: !isBlocked });
+
+
+  const toggleBlockUser = async (id) => {
+    try {     
+     var Block= await api.patch(`/Authentication/BlockUser/${id}`);
       fetchUsers();
     } catch (error) {
       console.error("Error updating user status", error);
@@ -53,20 +59,26 @@ const ManageUsers = () => {
               <div className="border-b pb-4">
                 <h3 className="text-xl font-semibold text-gray-900">{user.name}</h3>
                 <p className="text-sm text-gray-600">{user.email}</p>
-                <p className={`mt-2 text-sm font-medium ${user.blocked ? "text-red-500" : "text-green-500"}`}>
-                  {user.blocked ? "Blocked" : "Active"}
+                <p className={`mt-2 text-sm font-medium ${user.isUserBlock
+                                                              
+                                           ? "text-red-500" : "text-green-500"}`}>
+                  {user.isUserBlock ? "Blocked" : "Active"}
                 </p>
               </div>
 
               {/* Buttons - Responsive */}
               <div className="mt-4 flex flex-col sm:flex-row gap-3">
                 <button
-                  onClick={() => toggleBlockUser(user.id, user.blocked)}
+                  onClick={() => toggleBlockUser(user.id)}
                   className={`w-full sm:w-1/2 px-4 py-2 rounded-lg font-medium text-white ${
-                    user.blocked ? "bg-green-500 hover:bg-green-600" : "bg-yellow-500 hover:bg-yellow-600"
+                    user.
+isUserBlock
+ ? "bg-green-500 hover:bg-green-600" : "bg-yellow-500 hover:bg-yellow-600"
                   }`}
                 >
-                  {user.blocked ? "Unblock" : "Block"}
+                  {user.
+isUserBlock
+ ? "Unblock" : "Block"}
                 </button>
                 <button
                   onClick={() => handleDeleteUser(user.id)}

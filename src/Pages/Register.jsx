@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { api } from "../../Api/ApiServices";
 
 const validation = Yup.object({
   name: Yup.string().required("Name is required"),
@@ -18,23 +19,12 @@ const Register = () => {
   const [users,setusers]=useState([])
 
   const handleRegister = (values, { setSubmitting, resetForm }) => {
-    axios.get("http://localhost:3000/user")
-      .then((response) => {
-        setusers(response.data)
-        
-        // Check if email already exists
-       const SameUser=users.find((user) => user.email === values.email)
-        if (SameUser) {
-          alert("Email already registered!");
-          setSubmitting(false); 
-        } else {
-          // Register new user
-          axios.post("http://localhost:3000/user", {
-            name: values.name,
-            email: values.email,
-            password: values.password,
-            cart:[],
-            orders:[]
+
+          api.post("/Authentication/Register", {
+            Name: values.name,
+            Email: values.email,
+            Password: values.password,
+            ConfirmPassWord: values.confirmPassword
           })
           .then(() => {
             toast.success("Registration successful!");
@@ -48,12 +38,16 @@ const Register = () => {
             setSubmitting(false);
           });
         }
-      })
-      .catch((error) => {
-        console.error("Error fetching users:", error);
-        setSubmitting(false);
-      });
-  };
+        
+  
+
+
+      // }
+  //     .catch((error) => {
+  //       console.error("Error fetching users:", error);
+  //       setSubmitting(false);
+  //     });
+  // };
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -90,7 +84,6 @@ const Register = () => {
                 <Field type="password" name="confirmPassword" className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300" />
                 <ErrorMessage name="confirmPassword" component="small" className="text-red-500" />
               </div>
-
               <button type="submit" className="w-full bg-blue-900 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200"
                disabled={isSubmitting}>
                 {isSubmitting ? "Registering..." : "Register"}

@@ -102,15 +102,55 @@
       "email": "Azaru@gmail.com",
       "password": "098098",
       "cart": [],
-      "orders": [],
-      "blocked": false
-    },
-    {
-      "id": "0049",
-      "name": "Admin",
-      "email": "Admin@gmail.com",
-      "password": "098098",
-      "cart": [
+      "orders": [
+        {
+          "id": "3",
+          "name": "Puma RS-X",
+          "brand": "Puma",
+          "price": 99.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/395205/01/sv01/fnd/IND/fmt/png/Suede-XL-Unisex-Sneakers",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "name": "Reebok Classic",
+          "brand": "Reebok",
+          "price": 89.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_350,h_350/global/311848/01/sv01/fnd/IND/fmt/png/Softride-Premier-Ombre-Res-Unisex-Running-Shoes",
+          "quantity": 1
+        },
+        {
+          "id": "3",
+          "name": "Puma RS-X",
+          "brand": "Puma",
+          "price": 99.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/395205/01/sv01/fnd/IND/fmt/png/Suede-XL-Unisex-Sneakers",
+          "quantity": 1
+        },
+        {
+          "id": "3",
+          "name": "Puma RS-X",
+          "brand": "Puma",
+          "price": 99.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/395205/01/sv01/fnd/IND/fmt/png/Suede-XL-Unisex-Sneakers",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "name": "Adidas Ultraboost",
+          "brand": "Adidas",
+          "price": 149.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/108127/01/dt05/fnd/IND/fmt/png/Badminton-Smash-Sprint-Unisex-Indoor-Sports-Shoes",
+          "quantity": 1
+        },
+        {
+          "id": "6",
+          "name": "PUMA Max 190",
+          "brand": "Nike",
+          "price": "69",
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_350,h_350/global/310088/05/sv01/fnd/IND/fmt/png/MagMax-NITRO%E2%84%A2-Men's-Running-Shoes",
+          "quantity": 2
+        },
         {
           "id": "3",
           "name": "Puma RS-X",
@@ -120,6 +160,14 @@
           "quantity": 1
         }
       ],
+      "blocked": false
+    },
+    {
+      "id": "0049",
+      "name": "Admin",
+      "email": "Admin@gmail.com",
+      "password": "098098",
+      "cart": [],
       "orders": [
         {
           "id": "1",
@@ -145,9 +193,126 @@
           "price": "120",
           "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb96cKs2YKuQ6yL8tLRXVaMpSsI1MyjSYzGQ&s",
           "quantity": 1
+        },
+        {
+          "id": "2",
+          "name": "Adidas Ultraboost",
+          "brand": "Adidas",
+          "price": 149.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/108127/01/dt05/fnd/IND/fmt/png/Badminton-Smash-Sprint-Unisex-Indoor-Sports-Shoes",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "name": "Reebok Classic",
+          "brand": "Reebok",
+          "price": 89.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_350,h_350/global/311848/01/sv01/fnd/IND/fmt/png/Softride-Premier-Ombre-Res-Unisex-Running-Shoes",
+          "quantity": 1
+        },
+        {
+          "id": "0279",
+          "name": "palasa",
+          "price": "120",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb96cKs2YKuQ6yL8tLRXVaMpSsI1MyjSYzGQ&s",
+          "quantity": 1
         }
       ],
       "blocked": false
+    },
+    {
+      "id": "9e2e",
+      "name": "aaaaa",
+      "email": "Azaru@gmail.com",
+      "password": "111111",
+      "cart": [],
+      "orders": [
+        {
+          "id": "2",
+          "name": "Adidas Ultraboost",
+          "brand": "Adidas",
+          "price": 149.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/108127/01/dt05/fnd/IND/fmt/png/Badminton-Smash-Sprint-Unisex-Indoor-Sports-Shoes",
+          "quantity": 2
+        },
+        {
+          "id": "2",
+          "name": "Adidas Ultraboost",
+          "brand": "Adidas",
+          "price": 149.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/108127/01/dt05/fnd/IND/fmt/png/Badminton-Smash-Sprint-Unisex-Indoor-Sports-Shoes",
+          "quantity": 4
+        },
+        {
+          "id": "dc78",
+          "name": "Slippers",
+          "price": "122.99",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxMxvKiLd7pCuXCIkZnhBimWi70BIiYsxa4A&s",
+          "quantity": 2
+        },
+        {
+          "id": "2",
+          "name": "Adidas Ultraboost",
+          "brand": "Adidas",
+          "price": 149.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/108127/01/dt05/fnd/IND/fmt/png/Badminton-Smash-Sprint-Unisex-Indoor-Sports-Shoes",
+          "quantity": 1
+        },
+        {
+          "id": "3",
+          "name": "Puma RS-X",
+          "brand": "Puma",
+          "price": 99.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/395205/01/sv01/fnd/IND/fmt/png/Suede-XL-Unisex-Sneakers",
+          "quantity": 1
+        },
+        {
+          "id": "6",
+          "name": "PUMA Max 190",
+          "brand": "Nike",
+          "price": "69",
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_350,h_350/global/310088/05/sv01/fnd/IND/fmt/png/MagMax-NITRO%E2%84%A2-Men's-Running-Shoes",
+          "quantity": 1
+        },
+        {
+          "id": "dc78",
+          "name": "Slippers",
+          "price": "122.99",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxMxvKiLd7pCuXCIkZnhBimWi70BIiYsxa4A&s",
+          "quantity": 1
+        },
+        {
+          "id": "52d2",
+          "name": "Nike Gen-z  chappal",
+          "price": "122.99",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiBW9FKToztXX6mAovU8RCiXy5LJoA0O-snw&s",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "name": "Adidas Ultraboost",
+          "brand": "Adidas",
+          "price": 149.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/108127/01/dt05/fnd/IND/fmt/png/Badminton-Smash-Sprint-Unisex-Indoor-Sports-Shoes",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "name": "Adidas Ultraboost",
+          "brand": "Adidas",
+          "price": 149.99,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/108127/01/dt05/fnd/IND/fmt/png/Badminton-Smash-Sprint-Unisex-Indoor-Sports-Shoes",
+          "quantity": 1
+        },
+        {
+          "id": "7",
+          "name": "Nike Max 190",
+          "brand": "Nike",
+          "price": 18.9,
+          "image": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_350,h_350/global/191102/03/sv01/fnd/IND/fmt/png/NRGY-Dynamo-Futuro-Men's-Running-Shoes",
+          "quantity": 1
+        }
+      ]
     }
   ]
 }
